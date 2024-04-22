@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="product.image" alt="Photo of {{ product.name }}">
+  <mat-card-content>
+    <p>{{ product.description }}</p>
+  </mat-card-content>
+</mat-card>
