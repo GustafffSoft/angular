@@ -1,36 +1,37 @@
-import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { Product } from '../product-detail/product-data';
+import { ProductService } from '../service/product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule , CommonModule], // Añade aquí otros componentes o directivas que necesites
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css'
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  products: Product[] = [];
+  cargando: boolean = false;
 
-ngOnInit(): void {
+  constructor(private productService: ProductService) {} // Inyecta ProductService
 
-}
+  ngOnInit(): void {
+    this.cargarProductos();
+  }
 
-products: WritableSignal<Product[]> = signal ([])
-cargando =signal(false);
-
-async getProducts(){
-
-  this.cargando = signal(true);
-  const res = await fetch();
-  const resJson = await res.json();
-  this.products.set(resJson);
-  this.cargando = signal(false);
-}
-
-interface Product{
-pepe: string;
-name:string;
-
-}
-
-
-
+  cargarProductos(): void {
+    this.cargando = true;
+    this.productService.getProducts().subscribe({
+      next: (productos) => {
+        this.products = productos;
+        this.cargando = false;
+      },
+      error: (error) => {
+        console.error('Error al cargar los productos: ', error);
+        this.cargando = false;
+      }
+    });
+  }
 }

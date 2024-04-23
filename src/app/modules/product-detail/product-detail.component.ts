@@ -20,12 +20,12 @@ export class ProductDetailComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = +params['id'];  // El '+' convierte el parámetro de la ruta a un número
-      this.productService.getProductById(id).subscribe(product => {
-        this.product = product;
-      });
-    });
+    // this.route.params.subscribe(params => {
+    //   const id = +params['id'];  // El '+' convierte el parámetro de la ruta a un número
+    //   this.productService.getProductById(id).subscribe(product => {
+    //     this.product = product;
+    //   });
+    // });
   }
 
 }

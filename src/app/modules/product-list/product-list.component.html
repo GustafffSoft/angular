@@ -1,12 +1,12 @@
-<div *ngFor="let product of products" class="product-card">
-  <mat-card (click)="navigateToDetails(product.id)">
-    <mat-card-header>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="product.image" alt="Photo of {{ product.name }}">
-    <mat-card-content>
-      <p>{{ product.description }}</p>
-    </mat-card-content>
-  </mat-card>
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div *ngFor="let product of products" class="bg-white rounded-lg overflow-hidden shadow-lg">
+      <mat-card class="flex flex-col h-full">
+        <img [src]="product.Image1" alt="Photo of {{ product.Name }}" class="w-full">
+        <mat-card-actions class="mt-auto p-4">
+          <h2 class="text-lg font-bold">{{ product.Price }}</h2>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
