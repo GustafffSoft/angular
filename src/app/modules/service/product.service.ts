@@ -19,4 +19,10 @@ export class ProductService {
       })))
     );
   }
+
+  getProductById(id: number): Observable<Product | undefined> {
+    return this.getProducts().pipe(
+      map(products => products.find(product => product.id === id))
+    );
+  }
 }

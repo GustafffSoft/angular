@@ -1,3 +1,8 @@
+export interface ColorDetail {
+  color: string;
+  image_url: string;
+}
+
 export interface Product {
   id?: number;
   Image: string;
@@ -20,4 +25,5 @@ export interface Product {
     title: string;
     content: string[];
   };
+  Color_detail: ColorDetail[]; // Agregado para representar los detalles de color
 }

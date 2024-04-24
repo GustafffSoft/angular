@@ -1,10 +1,57 @@
-<!-- <mat-card>
-  <mat-card-header>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-    <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="product.image" alt="Photo of {{ product.name }}">
-  <mat-card-content>
-    <p>{{ product.description }}</p>
-  </mat-card-content>
-</mat-card> -->
+<div class="container mx-auto p-4">
+  <div *ngIf="product" class="max-w-4xl mx-auto">
+    <mat-card class="shadow-xl bg-gray-900">
+      <mat-card-header class="bg-gray-800 text-white">
+        <div class="mat-headline">{{ product.Name }}</div>
+      </mat-card-header>
+      <div class="bg-gray-800 p-4 flex flex-wrap justify-center gap-4">
+        <img [src]="product.Image1" alt="Image of {{ product.Name }}" class="w-full sm:w-1/3 object-cover rounded shadow-lg transition duration-300 ease-in-out hover:scale-110">
+        <ng-container *ngFor="let color of product.Color_detail">
+          <img [src]="color.image_url" alt="Color {{ color.color }}" class="w-full sm:w-1/3 object-cover rounded shadow-lg transition duration-300 ease-in-out hover:scale-110">
+          <span class="hidden sm:block text-center text-white mt-2 w-full">{{ color.color }}</span>
+        </ng-container>
+      </div>
+      <mat-card-content class="bg-gray-800 text-white">
+        <mat-accordion multi="true" class="text-white">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Description
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{ product.Description_content }}</p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Care
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="list-disc pl-5">
+              <li *ngFor="let instruction of product.Care.content">{{ instruction }}</li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Reviews
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="flex items-center">
+              <ng-container *ngFor="let star of [].constructor(5); let i = index">
+                <mat-icon class="star" [ngClass]="{'text-yellow-400': i < product.Reviews.rating, 'text-gray-300': i >= product.Reviews.rating}">
+                  star
+                </mat-icon>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+      <mat-card-actions class="justify-end bg-gray-800">
+        <span class="text-xl font-bold text-white">{{ product.Price }}</span>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
