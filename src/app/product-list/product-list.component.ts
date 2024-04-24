@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { Product } from '../product-detail/product-data';
-import { ProductService } from '../service/product.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { Product } from '../modules/product-detail/product-data';
+import { ProductService } from '../modules/service/product.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [MatCardModule , CommonModule],
+  imports: [CommonModule, ProductCardComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListaComponent implements OnInit {
   products: Product[] = [];
   cargando: boolean = false;
 
-  constructor(private productService: ProductService,  private router: Router
-  ) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.cargarProductos();
@@ -37,11 +36,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  goToProductDetail(productId: number | undefined): void {
-    if (productId !== undefined) {
-      this.router.navigate(['/products', productId]);
-    } else {
-      console.error('Product ID is undefined');
-    }
+  goToProductDetail(productId: number): void {
+    this.router.navigate(['/products', productId]);
   }
 }
