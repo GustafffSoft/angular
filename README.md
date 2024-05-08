@@ -25,3 +25,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+"If you would like to see the deployed website, you can visit this page: https://angular-m730r5exx-gustafffs-projects.vercel.app/. The site is hosted on Vercel."
